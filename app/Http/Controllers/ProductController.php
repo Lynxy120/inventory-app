@@ -46,8 +46,19 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'nullable|max:1000',
+            'status' => 'required|in:Tersedia,Tidak Tersedia'
+        ]);
+
         $product = Product::findOrFail($id);
+
         $product->update($request->all());
+
         return redirect()->route('products.index');
     }
 
@@ -98,6 +109,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'nullable|max:1000',
+            'status' => 'required|in:Tersedia,Tidak Tersedia'
+        ]);
+
         Product::create($request->all());
 
         return redirect()->route('products.index');
