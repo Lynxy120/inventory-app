@@ -52,7 +52,6 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|max:1000',
-            'status' => 'required|in:Tersedia,Tidak Tersedia'
         ]);
 
         $product = Product::findOrFail($id);
@@ -115,7 +114,6 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|max:1000',
-            'status' => 'required|in:Tersedia,Tidak Tersedia'
         ]);
 
         Product::create($request->all());
