@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@yield('content')
 @section('content')
 
     <div class="container mt-4">
